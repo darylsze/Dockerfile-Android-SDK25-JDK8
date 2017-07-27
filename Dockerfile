@@ -86,23 +86,24 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_
 
 
 # licenses
-RUN mkdir -p "${ANDROID_HOME}/licenses"
-RUN echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "${ANDROID_HOME}/licenses/android-sdk-license"
-RUN echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "${ANDROID_HOME}/licenses/android-sdk-preview-license"
-RUN echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "${ANDROID_HOME}/licenses/intel-android-extra-license"
+# RUN apt-get install sudo
+# RUN mkdir -p "${ANDROID_HOME}/licenses"
+# RUN echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "${ANDROID_HOME}/licenses/android-sdk-license"
+# RUN echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "${ANDROID_HOME}/licenses/android-sdk-preview-license"
+# RUN echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "${ANDROID_HOME}/licenses/intel-android-extra-license"
 
 # google apis
 # Please keep these in descending order!
 #RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-23 | grep 'package installed'
 
 # Copy install tools
-COPY tools /opt/tools
+# COPY tools /opt/tools
 
 #Copy accepted android licenses
-COPY licenses ${ANDROID_SDK_HOME}/licenses
+# COPY licenses ${ANDROID_SDK_HOME}/licenses
 
 # Update SDK
-RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
+# RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
 
 USER root
 
