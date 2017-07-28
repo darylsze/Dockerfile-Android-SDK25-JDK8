@@ -11,33 +11,14 @@ RUN apt-get update -qq
 #RUN dpkg --add-architecture i386
 #RUN apt-get update -qq
 #RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk libc6:i386 libstdc++6:i386 libgcc1:i386 libncurses5:i386 libz1:i386
-RUN apt-get install -y openjdk-8-jdk wget expect unzip
+RUN apt-get install -y openjdk-8-jdk wget expect unzip 
+RUN echo y | apt-get install curl | grep 'package installed'
 
 # ------------------------------------------------------
 # --- Download Android SDK tools into $ANDROID_SDK_HOME
 
 RUN useradd -u 1000 -M -s /bin/bash android
 RUN chown 1000 /opt
-
-
-#  - apt-get --quiet update --yes
-#  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
-#  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/tools_r${ANDROID_SDK_TOOLS}-linux.zip
-#  - apt-get install unzip
-#  - unzip android-sdk.zip -d android-sdk-linux
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter android-${ANDROID_TARGET_SDK}
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter platform-tools
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter build-tools-${ANDROID_BUILD_TOOLS}
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter extra-android-m2repository
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services
-#  - echo y | ${ANDROID_HOME}/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
-#  - mkdir -p "${ANDROID_HOME}/licenses"
-#  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "${ANDROID_HOME}/licenses/android-sdk-license"
-#  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "${ANDROID_HOME}/licenses/android-sdk-preview-license"
-#  - echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "${ANDROID_HOME}/licenses/intel-android-extra-license"
-#  - export ANDROID_HOME=$PWD/${ANDROID_HOME}
-#  - export PATH=$PATH:$PWD/${ANDROID_HOME}
-#  - chmod +x ./gradlew
 
 USER android
 ENV ANDROID_SDK_HOME /opt/android-sdk-linux
