@@ -1,7 +1,8 @@
 # Dockerfile-Android-SDK25-JDK8
 
-# usage - copy this file to android project root directory #
+usage - copy this file to android project root directory 
 
+```
 # pull the docker image from docker hub
 image: darylsze/android-sdk25-jdk8
 
@@ -33,3 +34,4 @@ build:
   only:
       - master
       - /^release-.*$/
+ ```
